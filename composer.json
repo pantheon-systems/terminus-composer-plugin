@@ -1,0 +1,9 @@
+{
+  "name": "rvtraveller/terminus-composer",
+  "description": "Composer - A Terminus plugin for running Composer commands on a Pantheon site",
+  "homepage": "https://github.com/rvtraveller/terminus-composer",
+  "license": "MIT",
+  "require": {
+    "php": ">=5.4"
+  }
+}
