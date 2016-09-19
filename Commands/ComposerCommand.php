@@ -18,12 +18,19 @@ class ComposerCommand extends CommandWithSSH {
   /**
    * {@inheritdoc}
    */
-  protected $command = 'drush status  > /dev/null && ../bin/php ../files/private/composer.phar';
+  protected $command = 'composer';
 
   /**
    * {@inheritdoc}
    */
   protected $unavailable_commands = [
+    // The global command would try to write to the home directory in
+    // a single Pantheon container. That's a recipe for confusion
+    // since that directory is outside of the version-controlled code.
+    // Any changes made in the home directory of a given container would
+    // not carry over to other containers and would be lost as the given
+    // environment eventually changes containers.
+    'global' => '',
   ];
 
   /**
@@ -58,8 +65,6 @@ class ComposerCommand extends CommandWithSSH {
       }
     }
 
-    $this->ensureComposer($environment);
-
     $elements = $this->getElements($args, $assoc_args);
 
     if ($this->log()->getOptions('logFormat') != 'normal') {
@@ -78,80 +83,6 @@ class ComposerCommand extends CommandWithSSH {
       $this->log()->info('Switching environment back to Git mode.');
       $environment->changeConnectionMode('git');
     }
-  }
-
-  /**
-   * Ensure composer is available for this site.
-   *
-   * @param \Terminus\Models\Environment $environment
-   */
-  private function ensureComposer(Environment $environment) {
-    $this->log()->info('Testing to see if composer is installed on your site.');
-    $connection_info = $environment->connectionInfo();
-    $sftpCommand = $connection_info['sftp_command'];
-    $renamed_composer = FALSE;
-    $current_timestamp = microtime(FALSE);
-
-    // If the user already has composer.phar in this directory, temporarily rename it
-    if (file_exists('composer.phar')) {
-      rename('composer.phar', $current_timestamp . '-composer.phar');
-      $renamed_composer = TRUE;
-    }
-
-    if (\Terminus\Utils\isWindows()) {
-      // Windows gets upset when you try and echo strings...
-      exec("(echo cd files && echo cd private && echo get composer.phar) | $sftpCommand", $fetch_output, $fetch_status);
-    } else {
-      exec("(echo 'cd files' && echo 'cd private' && echo 'get composer.phar') | $sftpCommand", $fetch_output, $fetch_status);
-    }
-    if (file_exists('composer.phar')) {
-      unlink('composer.phar');
-    } else {
-      $this->log()->info('Installing composer on your Pantheon site.  Please wait...');
-      $this->installComposer($sftpCommand);
-      $this->log()->info('Successfully installed composer on your Pantheon site.');
-    }
-
-    if ($renamed_composer) {
-      rename($current_timestamp . '-composer.phar', 'composer.phar');
-    }
-  }
-
-  /**
-   * Install Composer on a Pantheon site
-   *
-   * @param $sftpCommand
-   */
-  private function installComposer($sftpCommand) {
-    $filename = 'composer.phar';
-    $this->downloadComposer($filename);
-
-    if (\Terminus\Utils\isWindows()) {
-      // Windows gets upset when you try and echo strings...
-      exec("(echo cd files && echo cd private && echo put $filename) | $sftpCommand", $fetch_output, $fetch_status);
-    } else {
-      exec("(echo 'cd files' && echo 'cd private' && echo 'put $filename') | $sftpCommand", $fetch_output, $fetch_status);
-    }
-
-    unlink($filename);
-  }
-
-  /**
-   * Download Composer from the composer website
-   *
-   * @param $path
-   */
-  private function downloadComposer($path) {
-    // Latest composer.phar
-    $url = 'https://getcomposer.org/composer.phar';
-
-    $ch = curl_init($url);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    $data = curl_exec($ch);
-    curl_close($ch);
-
-    // Temporarily save the file locally so we can upload it
-    file_put_contents($path, $data);
   }
 
 }
