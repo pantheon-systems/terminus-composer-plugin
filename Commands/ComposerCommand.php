@@ -58,21 +58,29 @@ class ComposerCommand extends CommandWithSSH {
     if (in_array($env_id, ['test', 'live',])) {
       $this->failure('Composer cannot be run on test or live environments as the code base is not writable.');
     } else {
-      if ($environment->info('connection_mode') != 'sftp') {
+      if ($environment->get('connection_mode') != 'sftp') {
         $switched_to_sftp = TRUE;
         $this->log()->info('Switching environment to SFTP mode.');
         $environment->changeConnectionMode('sftp');
       }
     }
 
-    $elements = $this->getElements($args, $assoc_args);
-
+    $command = 'composer ' . implode(' ', $args);
     if ($this->log()->getOptions('logFormat') != 'normal') {
-      $elements['command']   .= ' --pipe';
+      $command .= ' --pipe';
     }
-    $elements['command'] .= '';
-    $result = $this->sendCommand($elements);
-    $this->output()->outputDump($result);
+    if ($result = $environment->sendCommandViaSsh($command)) {
+      $output = $result['output'];
+      if ($result['exit_code'] != 0) {
+        $output = $result['exit_code'] . ': ' . $output;
+        $this->log()->error($output);
+      } else {
+        $this->log()->info("\n" . $output);
+      }
+    } else {
+      $output = 'Unable to execute command.';
+      $this->log()->error($output);
+    }
 
     $diff = $environment->diffstat();
     $count = count((array)$diff);
