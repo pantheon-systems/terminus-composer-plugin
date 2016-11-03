@@ -1,7 +1,7 @@
 {
-  "name": "rvtraveller/terminus-composer",
-  "description": "Composer - A Terminus plugin for running Composer commands on a Pantheon site",
-  "homepage": "https://github.com/rvtraveller/terminus-composer",
+  "name": "pantheon-systems/terminus-drupal-composer",
+  "description": "Drupal Console - A Terminus plugin for running Drupal Console commands on a Pantheon site",
+  "homepage": "https://github.com/pantheon-systems/terminus-drupal-composer",
   "license": "MIT",
   "require": {
     "php": ">=5.4"
