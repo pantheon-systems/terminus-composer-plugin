@@ -69,15 +69,8 @@ class ComposerCommand extends CommandWithSSH {
     if ($this->log()->getOptions('logFormat') != 'normal') {
       $command .= ' --pipe';
     }
-    if ($result = $environment->sendCommandViaSsh($command)) {
-      $output = $result['output'];
-      if ($result['exit_code'] != 0) {
-        $output = $result['exit_code'] . ': ' . $output;
-        $this->log()->error($output);
-      } else {
-        $this->log()->info("\n" . $output);
-      }
-    } else {
+    $exit_code = $this->sendCommandViaUnbufferedSsh($environment, $command);
+    if ($exit_code) {
       $output = 'Unable to execute command.';
       $this->log()->error($output);
     }
@@ -93,4 +86,19 @@ class ComposerCommand extends CommandWithSSH {
     }
   }
 
+  /**
+   * Sends a command to an environment via SSH. Do not capture output.
+   */
+  public function sendCommandViaUnbufferedSsh($environment, $command)
+  {
+    $sftp = $environment->sftpConnectionInfo();
+    $ssh_command = vsprintf(
+        'ssh -T %s@%s -p %s -o "AddressFamily inet" %s',
+        [$sftp['username'], $sftp['host'], $sftp['port'], escapeshellarg($command),]
+    );
+
+    passthru($ssh_command, $exit_code);
+
+    return $exit_code;
+  }
 }
