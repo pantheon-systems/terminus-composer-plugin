@@ -71,8 +71,7 @@ class ComposerCommand extends CommandWithSSH {
     }
     $exit_code = $this->sendCommandViaUnbufferedSsh($environment, $command);
     if ($exit_code) {
-      $output = 'Unable to execute command.';
-      $this->log()->error($output);
+      $this->failure('Command failed with exit code ' . $exit_code);
     }
 
     $diff = $environment->diffstat();
