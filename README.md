@@ -2,26 +2,17 @@
 
 Terminus Plugin to run [Drupal Console](https://github.com/hechoendrupal/DrupalConsole) commands on a [Pantheon](https://www.pantheon.io) sites.
 
-Adds a command 'drupal' to Terminus which you can use just like 'drush' or 'wp'.
+Adds a command 'drupal' to Terminus 1.x which you can use just like 'drush' or 'wp'.
 
-This project is based on the [Terminus Composer](https://github.com/rvtraveller/terminus-composer) plugin.
+This project is based on the `drush` and `wp` commands from Terminus core.
 
 ## Configuration
 
-In order for the Terminus Drupal Console plugin to work, you must configure your Drupal site.
+In order for the Terminus Drupal Console plugin to work, you must add Drupal Console to your Drupal site.  Drupal Console is already included if you are using the [Example Drops-8 Composer repository](https://github.com/pantheon-systems/example-drops-8-composer) (recommended).
 
-* Add Drupal Console to your Drupal site via `composer require`
-* Add a Drupal Console configuration file to console/config.yml
-
-The config.yml file should contain (at a minimum):
-```
-application:
-    options:
-        root: web
-```
 ## Examples
-* `terminus drupal "list" --site=my-site --env=dev`
-* `terminus drupal "theme:debug" --site=my-site --env=dev`
+* `terminus drupal my-site.dev list`
+* `terminus drupal my-site.dev theme:debug`
 
 ## Installation
 For help installing, see [Terminus's Wiki](https://github.com/pantheon-systems/terminus/wiki/Plugins)
