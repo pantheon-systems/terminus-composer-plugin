@@ -13,7 +13,7 @@ class ComposerCommand extends CommandWithSSH {
   /**
    * {@inheritdoc}
    */
-  protected $client = 'composer';
+  protected $client = 'Composer';
 
   /**
    * {@inheritdoc}
@@ -47,42 +47,10 @@ class ComposerCommand extends CommandWithSSH {
    *
    */
   public function __invoke($args, $assoc_args) {
-    $switched_to_sftp = FALSE;
-
-    $sites = new Sites();
-    $site  = $sites->get($this->input()->siteName(['args' => $assoc_args,]));
-    $env_id = $this->input()->env(['args' => $assoc_args, 'site' => $site,]);
-    /** @var Environment $environment */
-    $environment = $site->environments->get($env_id);
-
-    if (in_array($env_id, ['test', 'live',])) {
-      $this->failure('Composer cannot be run on test or live environments as the code base is not writable.');
-    } else {
-      if ($environment->get('connection_mode') != 'sftp') {
-        $switched_to_sftp = TRUE;
-        $this->log()->info('Switching environment to SFTP mode.');
-        $environment->changeConnectionMode('sftp');
-      }
-    }
-
-    $command = 'composer ' . implode(' ', $args);
-    if ($this->log()->getOptions('logFormat') != 'normal') {
-      $command .= ' --pipe';
-    }
-    $exit_code = $this->sendCommandViaUnbufferedSsh($environment, $command);
-    if ($exit_code) {
-      $this->failure('Command failed with exit code ' . $exit_code);
-    }
-
-    $diff = $environment->diffstat();
-    $count = count((array)$diff);
-    if ($count > 0) {
-      $environment->commitChanges('Composer changes made by the Terminus Composer plugin.');
-    }
-    if ($switched_to_sftp) {
-      $this->log()->info('Switching environment back to Git mode.');
-      $environment->changeConnectionMode('git');
-    }
+    parent::__invoke($args, $assoc_args);
+    $command = $this->ssh_command;
+    $result = $this->sendCommandViaUnbufferedSsh($this->environment, $command);
+    exit($result['exit_code']);
   }
 
   /**
