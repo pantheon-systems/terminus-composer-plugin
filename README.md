@@ -7,7 +7,7 @@ Terminus Plugin to run [Composer](https://getcomposer.org/) commands on a [Panth
 
 Adds a command 'composer' to Terminus 1.x which you can use just like 'drush' or 'wp'. For a version that works with Terminus 0.x, see the [0.x branch](https://github.com/pantheon-systems/terminus-composer-plugin/tree/0.x).
 
-This project is based on the `drush` and `wp` commands from Terminus core.
+This project is a simplified version of the original [Terminus Composer Plugin](https://github.com/rvtraveller/terminus-composer) by Brian Thompson, updated for Terminus 1.x.
 
 ## Configuration
 
@@ -17,7 +17,7 @@ If using Composer to manage your site on Pantheon, it is best to start with the 
 - Drupal 8: [Example Drops-8 Composer](https://github.com/pantheon-systems/example-drops-8-composer)
 - Drupal 7: tbd
 
-Using Composer to manage standard sites on Pantheon not started with these upstreams (or a similar variant thereof) is not recommended.
+Using Composer to manage standard sites on Pantheon not started with these upstreams (or a similar variant thereof) is not recommended. Ensure that your site's pantheon.yml contains `web_docroot: true`. See [Serving Sites from the Web Subdirectory](https://pantheon.io/docs/nested-docroot/) for more information.
 
 ## Examples
 * `terminus composer my-site.dev -- composer config repositories.drupal composer https://packages.drupal.org/8`
