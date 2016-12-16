@@ -1,9 +1,11 @@
 {
-  "name": "rvtraveller/terminus-composer",
-  "description": "Composer - A Terminus plugin for running Composer commands on a Pantheon site",
-  "homepage": "https://github.com/rvtraveller/terminus-composer",
-  "license": "MIT",
-  "require": {
-    "php": ">=5.4"
-  }
+    "name": "pantheon-systems/terminus-composer-plugin",
+    "description": "Composer - A Terminus plugin for running Composer commands on a Pantheon site",
+    "type": "terminus-plugin",
+    "license": "MIT",
+    "extra": {
+        "terminus": {
+            "compatible-version": "^0"
+        }
+    }
 }
