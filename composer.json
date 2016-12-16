@@ -1,10 +1,10 @@
 {
-    "name": "pantheon/terminus-drupal-console-plugin",
-    "description": "Drupal Console - A Terminus plugin for running Drupal Console commands on a Pantheon site",
+    "name": "pantheon-systems/terminus-composer-plugin",
+    "description": "Composer - A Terminus plugin for running Composer commands on a Pantheon site",
     "type": "terminus-plugin",
     "license": "MIT",
     "autoload": {
-        "psr-4": { "Pantheon\\TerminusDrupalConsole": "src" }
+        "psr-4": { "Pantheon\\TerminusComposer\\": "src" }
     },
     "extra": {
         "terminus": {
