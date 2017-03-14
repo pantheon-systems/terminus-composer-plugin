@@ -15,7 +15,7 @@ If using Composer to manage your site on Pantheon, it is best to start with the 
 
 - WordPress: [Advanced WordPress on Pantheon](https://github.com/ataylorme/Advanced-WordPress-on-Pantheon)
 - Drupal 8: [Example Drops-8 Composer](https://github.com/pantheon-systems/example-drops-8-composer)
-- Drupal 7: tbd
+- Drupal 7: [Example Drops-7 Composer](https://github.com/pantheon-systems/example-drops-7-composer)
 
 Using Composer to manage standard sites on Pantheon not started with these upstreams (or a similar variant thereof) is not recommended. Ensure that your site's pantheon.yml contains `web_docroot: true`. See [Serving Sites from the Web Subdirectory](https://pantheon.io/docs/nested-docroot/) for more information.
 
@@ -23,6 +23,17 @@ Using Composer to manage standard sites on Pantheon not started with these upstr
 * `terminus composer my-site.dev -- composer config repositories.drupal composer https://packages.drupal.org/8`
 * `terminus composer my-site.dev -- require drupal/media`
 * `terminus composer my-site.dev -- update`
+
+## Testing
+To run the tests locally, [install bats](https://github.com/sstephenson/bats#installing-bats-from-source), and then run:
+
+`bats tests/terminus-0`
+
+ * or *
+ 
+`bats tests/terminus-1`
+
+The tests presume that Terminus 1.x is available as `terminus`.
 
 ## Installation
 For help installing, see [Terminus's Wiki](https://github.com/pantheon-systems/terminus/wiki/Plugins)

@@ -1,6 +1,6 @@
 <?php
 /**
- * Run Drupal Console on Pantheon
+ * Run Composer on Pantheon
  */
 namespace Pantheon\TerminusComposer\Commands;
 
