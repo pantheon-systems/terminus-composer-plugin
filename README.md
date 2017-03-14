@@ -25,15 +25,16 @@ Using Composer to manage standard sites on Pantheon not started with these upstr
 * `terminus composer my-site.dev -- update`
 
 ## Testing
-To run the tests locally, [install bats](https://github.com/sstephenson/bats#installing-bats-from-source), and then run:
+To run the tests locally, just run `composer test`.  The tests presume that Terminus 1.x is installed and available in your PATH as `terminus`.
 
-`bats tests/terminus-0`
+### Seting up testing for your own Terminus plugin
 
- * or *
- 
-`bats tests/terminus-1`
+If you'd like to copy the test scripts here for use with your own Terminus plugin, you will also need to set up a Pantheon site to operate on. In Circle CI, set up the following environment variables:
 
-The tests presume that Terminus 1.x is available as `terminus`.
+- TERMINUS_SITE: The name of the Pantheon site to run tests against
+- TERMINUS_TOKEN: A Pantheon machine token
+
+You will also need to create an ssh key pair, and add the private key to Circle CI (leave the host empty), and add the public key to your account on Pantheon.
 
 ## Installation
 For help installing, see [Terminus's Wiki](https://github.com/pantheon-systems/terminus/wiki/Plugins)
