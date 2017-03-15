@@ -36,12 +36,12 @@ To run the tests locally, just run `composer test`.
 
 ### Seting up testing for your own Terminus plugin
 
-If you'd like to copy the test scripts here for use with your own Terminus plugin, you will also need to set up a Pantheon site to operate on. In Circle CI, set up the following environment variables:
+If you'd like to copy the test scripts here for use with your own Terminus plugin, you will also need to configure Circle CI to run your tests. In the Circle CI settings, set up the following environment variables:
 
 - TERMINUS_SITE: The name of the Pantheon site to run tests against
 - TERMINUS_TOKEN: A Pantheon machine token
 
-You will also need to create an ssh key pair, and add the private key to Circle CI (leave the host empty), and add the public key to your account on Pantheon.
+You will also need to create an ssh key pair, and add the private key to Circle CI (leave the "Hostname" field empty), and add the public key to your account on Pantheon.
 
 ## Installation
 For help installing, see [Terminus's Wiki](https://github.com/pantheon-systems/terminus/wiki/Plugins)
