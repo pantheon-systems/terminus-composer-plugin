@@ -26,7 +26,13 @@ Using Composer to manage standard sites on Pantheon not started with these upstr
 * `terminus composer my-site.dev -- update`
 
 ## Testing
-To run the tests locally, just run `composer test`.  The tests presume that Terminus 1.x is installed and available in your PATH as `terminus`.
+The preconditions to running tests are:
+
+- Install Terminus 1.x, and ensure it is available on your PATH as `terminus`
+- Export the environment variable TERMINUS_SITE to point at a test site.
+- Run `terminus auth:login`
+
+To run the tests locally, just run `composer test`.
 
 ### Seting up testing for your own Terminus plugin
 
