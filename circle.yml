@@ -7,7 +7,6 @@ machine:
   php:
     version: 7.0.11
   environment:
-    TERMINUS_PLUGINS_DIR: $HOME
     PATH: $PATH:~/.composer/vendor/bin:~/.config/composer/vendor/bin:$HOME/bin
 
 dependencies:

@@ -12,7 +12,6 @@ The preconditions to running tests locally are:
 - Run 'composer install' if your local working copy does not have a `vendor` directory yet.
 - Install Terminus 1.x, and ensure it is available on your PATH as `terminus`
 - Export the environment variable TERMINUS_SITE to point at a test site.
-- Export the environment variable TERMINUS_PLUGINS_DIR to point at the parent directory where your plugin sources are stored (e.g. `export TERMINUS_PLUGINS_DIR="$(pwd)/../"`)
 - Run `terminus auth:login`
 
 Once that is done, use `composer test` to run the test suite. This will install the test runner, run the tests, and check the sources for PSR-2 compliance.
