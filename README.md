@@ -4,7 +4,7 @@
 [![Terminus v1.x Compatible](https://img.shields.io/badge/terminus-v1.x-green.svg)](https://github.com/pantheon-systems/terminus-composer-plugin/tree/1.x)
 [![Terminus v0.x Compatible](https://img.shields.io/badge/terminus-v0.x-green.svg)](https://github.com/pantheon-systems/terminus-composer-plugin/tree/0.x)
 
-Terminus Plugin to run [Composer](https://getcomposer.org/) commands on a [Pantheon](https://www.pantheon.io) sites.
+Terminus Plugin to run [Composer](https://getcomposer.org/) commands on [Pantheon](https://www.pantheon.io) sites.
 
 Adds a command 'composer' to Terminus 1.x which you can use just like 'drush' or 'wp'. For a version that works with Terminus 0.x, see the [0.x branch](https://github.com/pantheon-systems/terminus-composer-plugin/tree/0.x).
 
