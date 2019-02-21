@@ -8,11 +8,8 @@
     },
     "extra": {
         "terminus": {
-            "compatible-version": "^1"
+            "compatible-version": "^1|^2"
         }
-    },
-    "require-dev": {
-        "squizlabs/php_codesniffer": "^2.7"
     },
     "scripts": {
         "cs": "phpcs --standard=PSR2 -n src",
