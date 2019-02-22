@@ -21,6 +21,13 @@ If using Composer to manage your site on Pantheon, it is best to start with the 
 Using Composer to manage standard sites on Pantheon not started with these upstreams (or a similar variant thereof) is not recommended. Ensure that your site's pantheon.yml contains `web_docroot: true`. See [Serving Sites from the Web Subdirectory](https://pantheon.io/docs/nested-docroot/) for more information.
 
 ## Examples
+
+* `terminus composer my-script`
+
+### Caution
+
+Commands such as `composer require` and `composer update` take a lot of memory, and are likely to fail when run on the platform. Some problematic examples appear below:
+
 * `terminus composer my-site.dev -- composer config repositories.drupal composer https://packages.drupal.org/8`
 * `terminus composer my-site.dev -- require drupal/media`
 * `terminus composer my-site.dev -- update`
