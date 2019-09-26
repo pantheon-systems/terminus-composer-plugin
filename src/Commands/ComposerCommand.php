@@ -23,7 +23,7 @@ class ComposerCommand extends SSHBaseCommand
     ];
 
     /**
-     * Run an arbitrary Drupal Console command on a site's environment
+     * Run an arbitrary Composer command on a site's environment
      *
      * @authorize
      *
