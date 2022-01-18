@@ -1,10 +1,11 @@
 # Terminus Composer Plugin
 
-[![CircleCI](https://circleci.com/gh/pantheon-systems/terminus-composer-plugin.svg?style=shield)](https://circleci.com/gh/pantheon-systems/terminus-composer-plugin)
+[![GitHub Actions](https://github.com/pantheon-systems/terminus-composer-plugin/actions/workflows/ci.yml/badge.svg)](https://github.com/pantheon-systems/terminus-composer-plugin/actions)
+[![Terminus v2.x - v3.x Compatible](https://img.shields.io/badge/terminus-2.x%20--%203.x-green.svg)](https://github.com/pantheon-systems/terminus-composer-plugin/tree/1.x)
 
 Terminus Plugin to run [Composer](https://getcomposer.org/) commands on [Pantheon](https://www.pantheon.io) sites.
 
-Adds a command 'composer' to Terminus 1.x, 2.x or 3.x which you can use just like 'drush' or 'wp'.
+Adds a command 'composer' to Terminus which you can use just like 'drush' or 'wp'.
 
 This project is a simplified version of the original [Terminus Composer Plugin](https://github.com/rvtraveller/terminus-composer) by Brian Thompson.
 
@@ -31,10 +32,18 @@ Using Composer to manage standard sites on Pantheon not started with these upstr
 * `terminus composer my-site.dev -- update`
 
 ## Installation
-For help installing, see [Manage Plugins](https://pantheon.io/docs/terminus/plugins/)
+
+To install this plugin using Terminus 3:
+```
+terminus self:plugin:install terminus-composer-plugin
+```
+
+On older versions of Terminus:
 ```
 mkdir -p ~/.terminus/plugins
-composer create-project --no-dev -d ~/.terminus/plugins pantheon-systems/terminus-composer-plugin:~1
+composer create-project --no-dev -d ~/.terminus/plugins pantheon-systems/terminus-composer-plugin
 ```
+For help installing, see [Manage Plugins](https://pantheon.io/docs/terminus/plugins/)
+
 ## Help
 Run `terminus help composer` for help.

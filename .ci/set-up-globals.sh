@@ -17,18 +17,15 @@ touch $BASH_ENV
 ) >> $BASH_ENV
 source $BASH_ENV
 
-set -ex
-
-TERMINUS_PLUGINS_DIR=.. terminus list -n remote
-
 set +ex
 echo "Test site is $TERMINUS_SITE"
 echo "Logging in with a machine token:"
 terminus auth:login -n --machine-token="$TERMINUS_TOKEN"
 terminus whoami
+mkdir -p $HOME/.ssh
 touch $HOME/.ssh/config
 echo "StrictHostKeyChecking no" >> "$HOME/.ssh/config"
 git config --global user.email "$GIT_EMAIL"
-git config --global user.name "Circle CI"
+git config --global user.name "GitHub Actions"
 # Ignore file permissions.
 git config --global core.fileMode false
