@@ -33,10 +33,15 @@ Using Composer to manage standard sites on Pantheon not started with these upstr
 * `terminus composer my-site.dev -- update`
 
 ## Installation
-For help installing, see [Manage Plugins](https://pantheon.io/docs/terminus/plugins/)
+
+### Installing via Terminus 3
+`terminus self:plugin:install pantheon-systems/terminus-composer-plugin`
+
+On older versions of Terminus:
 ```
 mkdir -p ~/.terminus/plugins
 composer create-project --no-dev -d ~/.terminus/plugins pantheon-systems/terminus-composer-plugin:~1
 ```
+
 ## Help
 Run `terminus help composer` for help.
