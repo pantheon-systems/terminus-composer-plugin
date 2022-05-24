@@ -40,7 +40,7 @@ Using Composer to manage standard sites on Pantheon not started with these upstr
 On older versions of Terminus:
 ```
 mkdir -p ~/.terminus/plugins
-curl https://github.com/pantheon-systems/terminus-composer-plugin/archive/refs/tags/1.1.0.tar.gz -L | tar -C ~/.terminus/plugins -xvz
+composer create-project --no-dev -d ~/.terminus/plugins pantheon-systems/terminus-composer-plugin:~1
 ```
 
 ## Help
