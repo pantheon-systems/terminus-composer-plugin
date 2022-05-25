@@ -33,7 +33,7 @@ Using Composer to manage standard sites on Pantheon not started with these upstr
 * `terminus composer my-site.dev -- update`
 
 ### Note
-* The `--no-scripts` parameter is not supported on the Pantheon platform. If your workflow requires this parameter, run the command locally and push the resulting `composer.json` and `composer.lock` files to your repository.
+* The `--no-scripts` parameter is not supported on some Pantheon upstreams. If your operation requires this parameter, run the command locally along with `export COMPOSER_ROOT_VERSION=dev-main` and push the resulting `composer.json` and `composer.lock` files to your repository.
 
 ## Installation
 
