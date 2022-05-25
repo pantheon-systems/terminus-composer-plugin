@@ -32,6 +32,9 @@ Using Composer to manage standard sites on Pantheon not started with these upstr
 * `terminus composer my-site.dev -- require drupal/media`
 * `terminus composer my-site.dev -- update`
 
+### Note
+* The `--no-scripts` parameter is not supported on the Pantheon platform. If your workflow requires this parameter, run the command locally and push the resulting `composer.json` and `composer.lock` files to your repository.
+
 ## Installation
 
 ### Installing via Terminus 3
