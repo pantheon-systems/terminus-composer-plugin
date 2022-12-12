@@ -10,7 +10,6 @@
   run terminus composer $TERMINUS_SITE.dev depends symfony/console
   [ "$status" -eq 0 ]
   [[ "$output" == *"drupal/core"* ]]
-  [[ "$output" == *"drupal/console-core"* ]]
   [[ "$output" == *"drush/drush"* ]]
 }
 
