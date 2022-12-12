@@ -16,6 +16,6 @@
 @test "look at licenses" {
   run terminus composer $TERMINUS_SITE.dev licenses
   [ "$status" -eq 0 ]
-  [[ "$output" == *"GPL-2.0+"* ]]
+  [[ "$output" == *"GPL-2.0-or-later"* ]]
   [[ "$output" == *"MIT"* ]]
 }
