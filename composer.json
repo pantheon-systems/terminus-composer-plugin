@@ -8,13 +8,14 @@
     },
     "extra": {
         "terminus": {
-            "compatible-version": "^1|^2"
+            "compatible-version": "^3 || ^4"
         }
     },
     "scripts": {
         "cs": "phpcs --standard=PSR2 -n src",
         "cbf": "phpcbf --standard=PSR2 -n src",
         "lint": "find src -name '*.php' -print0 | xargs -0 -n1 php -l",
+        "deprecations": "find src -name '*.php' -print0 | xargs -0 -n1 php -l 2>&1 >/dev/null | tee /tmp/deprecations ; [ ! -s /tmp/deprecations ]",
         "unit": "phpunit --colors=always tests",
         "functional": "TERMINUS_PLUGINS_DIR=.. PATH=tools/bin:$PATH bats -p -t tests/functional",
         "install-bats": "if [ ! -f tools/bin/bats ] ; then git clone https://github.com/sstephenson/bats.git tools/bats; tools/bats/install.sh tools; fi",
