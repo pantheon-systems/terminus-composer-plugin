@@ -13,6 +13,7 @@ jobs:
         <<: *defaults
         steps:
             - checkout
+            - add_ssh_keys
             - run:
                 name: Set up environment
                 command: ./.circleci/set-up-globals.sh
