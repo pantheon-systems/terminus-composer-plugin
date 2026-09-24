@@ -1,12 +1,13 @@
+# Managed by github-terraform — do not edit manually
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: terminus-composer-plugin
-  description: Auto-generated catalog info for pantheon-systems/terminus-composer-plugin
+  name: "terminus-composer-plugin"
+  description: "A Terminus plugin for running Composer commands on a Pantheon site"
   annotations:
-    backstage.io/techdocs-ref: dir:docs/
+    "backstage.io/techdocs-ref": "dir:docs/"
 spec:
-  type: tool
-  lifecycle: mature
-  owner: developer-experience
+  type: "tool"
+  lifecycle: "mature"
+  owner: "developer-experience"
